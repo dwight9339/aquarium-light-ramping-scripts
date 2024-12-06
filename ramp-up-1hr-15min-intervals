@@ -1,1 +1,77 @@
+alias: Aquarium Light Ramp Up - 15 min interval
+sequence:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 25
+        - 23
+        - 22
+        - 26
+    target:
+      device_id: your-device-id
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 89
+        - 82
+        - 78
+        - 89
+    target:
+      device_id: your-device-id
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 166
+        - 153
+        - 144
+        - 166
+    target:
+      device_id: your-device-id
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 230
+        - 212
+        - 199
+        - 230
+    target:
+      device_id: your-device-id
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 255
+        - 235
+        - 221
+        - 255
+    target:
+      device_id: your-device-id
+description: >-
+  Raises the brightness of the aquarium light from off to maximum brightness
+  over the course of an hour in 15 minute intervals.
+icon: mdi:chart-bell-curve-cumulative
 
