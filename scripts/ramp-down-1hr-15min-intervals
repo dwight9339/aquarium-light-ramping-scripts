@@ -1,4 +1,4 @@
-alias: Aquarium Light Ramp Down - 15 min interval
+alias: Aquarium Light Ramp Down - 1 hr - 15 min interval
 sequence:
   - action: light.turn_on
     metadata: {}
