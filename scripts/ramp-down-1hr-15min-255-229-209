@@ -1,0 +1,74 @@
+alias: Aquarium Ramp Down- 1 hr - 15 min interval
+sequence:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 230
+        - 206
+        - 188
+        - 230
+    target:
+      device_id: your-device-id
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 166
+        - 149
+        - 136
+        - 166
+    target:
+      device_id: your-device-id
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 89
+        - 80
+        - 73
+        - 89
+    target:
+      device_id: your-device-id
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 25
+        - 23
+        - 21
+        - 26
+    target:
+      device_id: your-device-id
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgbw_color:
+        - 0
+        - 0
+        - 0
+        - 0
+    target:
+      device_id: your-device-id
+description: ""
+icon: mdi:chart-bell-curve-cumulative
