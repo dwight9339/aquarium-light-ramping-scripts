@@ -1,9 +1,10 @@
-alias: Aquarium Ramp Up - S-Curve
+alias: Aquarium Brightness Ramp - S-Curve
 variables:
-  delay_time: "00:00:01"   # Frequency of light adjustments
-  step_count: 100          # Number of light adjustment steps
-  steepness: 2             # Adjusts the ramp steepness. A steepness of 1.6 closely approximates sine-squared
-  peak_brightness:         # Sets the maximum brightness for each LED channel (R, G, B, and W)
+  direction: "up"           # Set to "up" for ramp up or "down" for ramp down
+  delay_time: "00:00:01"    # Frequency of light adjustments
+  step_count: 3600          # Number of light adjustment steps
+  steepness: 2              # Adjusts the ramp steepness. A steepness of 1.6 closely approximates sine-squared
+  peak_brightness:          # Sets the maximum brightness for each LED channel (R, G, B, and W)
     - 255
     - 235
     - 221
@@ -12,31 +13,39 @@ sequence:
   - repeat:
       count: "{{ step_count }}"
       sequence:
-        - data_template:
+        - variables:
+            i: >-
+              {% if direction == "up" %}
+                {{ repeat.index }}
+              {% else %}
+                {{ step_count - repeat.index }}
+              {% endif %}
+        - service: light.turn_on
+          data_template:
             entity_id: light.[your-light-id]
             rgbw_color:
               - >-
-                {% set t = repeat.index / step_count %} {% set numerator =
-                t**steepness %} {% set denominator = t**steepness + (1 -
-                t)**steepness %} {{ ((numerator / denominator) *
-                peak_brightness[0]) | int }}
+                {% set t = i / step_count %} 
+                {% set numerator = t**steepness %} 
+                {% set denominator = t**steepness + (1 - t)**steepness %} 
+                {{ ((numerator / denominator) * peak_brightness[0]) | int }}
               - >-
-                {% set t = repeat.index / step_count %} {% set numerator =
-                t**steepness %} {% set denominator = t**steepness + (1 -
-                t)**steepness %} {{ ((numerator / denominator) *
-                peak_brightness[1]) | int }}
+                {% set t = i / step_count %} 
+                {% set numerator = t**steepness %} 
+                {% set denominator = t**steepness + (1 - t)**steepness %} 
+                {{ ((numerator / denominator) * peak_brightness[1]) | int }}
               - >-
-                {% set t = repeat.index / step_count %} {% set numerator =
-                t**steepness %} {% set denominator = t**steepness + (1 -
-                t)**steepness %} {{ ((numerator / denominator) *
-                peak_brightness[2]) | int }}
+                {% set t = i / step_count %} 
+                {% set numerator = t**steepness %} 
+                {% set denominator = t**steepness + (1 - t)**steepness %} 
+                {{ ((numerator / denominator) * peak_brightness[2]) | int }}
               - >-
-                {% set t = repeat.index / step_count %} {% set numerator =
-                t**steepness %} {% set denominator = t**steepness + (1 -
-                t)**steepness %} {{ ((numerator / denominator) *
-                peak_brightness[3]) | int }}
-          action: light.turn_on
+                {% set t = i / step_count %} 
+                {% set numerator = t**steepness %} 
+                {% set denominator = t**steepness + (1 - t)**steepness %} 
+                {{ ((numerator / denominator) * peak_brightness[3]) | int }}
         - delay: "{{ delay_time }}"
 description: >-
-  Gradually ramps light brightness from off to the specified peak RGBW color
-  using a rational S-curve.
+  Gradually ramps light brightness up or down to the specified peak RGBW color
+  using a rational S-curve. Use the "direction" variable to control the ramp
+  direction.
