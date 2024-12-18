@@ -1,4 +1,4 @@
-alias: Aquarium Ramp - Sinusoidal
+alias: Aquarium Ramp - Sine Curve
 variables:
   direction: "up"           # Set to "up" for ramp up or "down" for ramp down
   delay_time: "00:00:01"    # Time delay between steps
@@ -37,6 +37,6 @@ sequence:
                 peak_brightness[3]) | int }}
         - delay: "{{ delay_time }}"
 description: >-
-  Ramps light brightness up or down using a sinusoidal curve, based on the
+  Ramps light brightness up or down using a sine curve, based on the
   direction variable ("up" or "down").
 icon: mdi:chart-bell-curve-cumulative
