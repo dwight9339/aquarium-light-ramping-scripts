@@ -1,8 +1,9 @@
-alias: Aquarium Ramp Up - Sine Curve
+alias: Aquarium Ramp - Sinusoidal
 variables:
-  delay_time: "00:00:01"   # Frequency of light adjustments
-  step_count: 3600         # Number of light adjustment steps
-  peak_brightness:         # Sets the maximum brightness for each LED channel (R, G, B, and W)
+  direction: "up"           # Set to "up" for ramp up or "down" for ramp down
+  delay_time: "00:00:01"    # Time delay between steps
+  step_count: 100           # Total number of steps in the ramp
+  peak_brightness:          # RGBW peak brightness values
     - 255
     - 235
     - 221
@@ -11,25 +12,31 @@ sequence:
   - repeat:
       count: "{{ step_count }}"
       sequence:
-        sequence:
-          - data_template:
-              entity_id: light.[your-light-id]
-              rgbw_color:
-                - >-
-                  {{ sin(pi * (repeat.index / step_count) / 2) *
-                  peak_brightness[0] }}
-                - >-
-                  {{ sin(pi * (repeat.index / step_count) / 2) *
-                  peak_brightness[1] }}
-                - >-
-                  {{ sin(pi * (repeat.index / step_count) / 2) *
-                  peak_brightness[2] }}
-                - >-
-                  {{ sin(pi * (repeat.index / step_count) / 2) *
-                  peak_brightness[3] }}
-            action: light.turn_on
-          - delay: "{{ delay_time }}"
+        - variables:
+            i: >-
+              {% if direction == "up" %}
+                {{ repeat.index }}
+              {% else %}
+                {{ step_count - repeat.index }}
+              {% endif %}
+        - service: light.turn_on
+          data_template:
+            entity_id: light.[your-light-id]
+            rgbw_color:
+              - >-
+                {{ (sin(pi * (i / step_count) / 2) *
+                peak_brightness[0]) | int }}
+              - >-
+                {{ (sin(pi * (i / step_count) / 2) *
+                peak_brightness[1]) | int }}
+              - >-
+                {{ (sin(pi * (i / step_count) / 2) *
+                peak_brightness[2]) | int }}
+              - >-
+                {{ (sin(pi * (i / step_count) / 2) *
+                peak_brightness[3]) | int }}
+        - delay: "{{ delay_time }}"
 description: >-
-  Increases light brightness from off to a specified peak brightness color
-  (RGBW) following a sine curve.
+  Ramps light brightness up or down using a sinusoidal curve, based on the
+  direction variable ("up" or "down").
 icon: mdi:chart-bell-curve-cumulative
