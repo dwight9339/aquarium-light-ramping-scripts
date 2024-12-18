@@ -59,7 +59,3 @@ Contributions are welcome! If you have ideas for improving the scripts or want t
 ## Support
 
 If you encounter any problems, feel free to create an Issue. Please provide details about the problem, including your setup and any error messages.
-
-License
-
-This project is licensed under the MIT License, so feel free to use and modify it for your aquarium setup.
