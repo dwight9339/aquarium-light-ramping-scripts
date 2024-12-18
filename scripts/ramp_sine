@@ -2,7 +2,7 @@ alias: Aquarium Ramp - Sine Curve
 variables:
   direction: "up"           # Set to "up" for ramp up or "down" for ramp down
   delay_time: "00:00:01"    # Time delay between steps
-  step_count: 100           # Total number of steps in the ramp
+  step_count: 3600          # Total number of steps in the ramp
   peak_brightness:          # RGBW peak brightness values
     - 255
     - 235
