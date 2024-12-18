@@ -51,29 +51,14 @@ action:
         direction: "down"
 ```
 
-## FAQ
-- Q: Which curve should I use?
-
-    Sine Curve: Best for natural-looking sunlight transitions and plant growth.
-    S-Curve: Great for perceptually smooth ramps and algae control.
-
-- Q: What if my lights don't respond correctly?
-
-Ensure the entity_id in the script matches your light's ID in Home Assistant. If you’re still having issues, create an Issue on this repo.
-Contributing
-
-We welcome contributions! If you have ideas for improving the scripts or want to add new features:
-
-    Fork the repository.
-    Submit a pull request with your changes.
-    Include a detailed description of the feature or improvement.
+## Contributing
+Contributions are welcome! If you have ideas for improving the scripts or want to add new features:
+- Submit a pull request with your changes.
+- Include a detailed description of the feature or improvement.
 
 ## Support
 
-If you encounter any problems, feel free to:
-
-    Create an Issue: Provide details about the problem, including your setup and any error messages.
-    Check the Discussions: Join the conversation to get help or share your ideas.
+If you encounter any problems, feel free to create an Issue. Please provide details about the problem, including your setup and any error messages.
 
 License
 
