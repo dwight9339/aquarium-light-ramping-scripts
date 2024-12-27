@@ -51,6 +51,10 @@ action:
         direction: "down"
 ```
 
+## Ramp Shape Playground
+I've created a [playground](https://www.desmos.com/calculator/vqs9qccxtg) with interactive graphs for each of the available ramp shapes to help dial in the best lighting schedule. 
+![ramp_shape_playground_screenshot(1)](https://github.com/user-attachments/assets/3ca96f93-9ad0-457e-9949-47ad255f9460)
+
 ## Contributing
 Contributions are welcome! If you have ideas for improving the scripts or want to add new features:
 - Submit a pull request with your changes.
